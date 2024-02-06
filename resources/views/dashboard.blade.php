@@ -9,7 +9,7 @@
     <link rel="icon" type="image/x-icon" href="assets/image/logo.png">
     <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
 </head>
-<body>
+<body style="background-color:#FDF8F0">
     <!-- header -->
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
@@ -42,7 +42,7 @@
             <h5 class="modal-title" id="employee">Employee</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body bg-light">
             <div class="card p-3">
                 <form  action="/login-user" method="post">
                   {{@csrf_field()}}            
@@ -109,11 +109,11 @@
             </div>
             <div class="row g-3 align-items-center" style="margin-bottom: 5px">
               <div class="col-auto">
-                <label for="email" class="col-form-label">UploadFile</label>
+                <label for="file" class="col-form-label">UploadFile</label>
               </div>&nbsp;
-              <div class="col-auto">
+              
               <input type="file" id="name" class="form-control" aria-describedby="basic-addon1">
-              </div>
+              
             </div>
           </div>
 		  </div>
@@ -133,46 +133,46 @@
   <!-- modal end employee -->
   <section style="padding:5%">
   <div>
-<table style="border: 2px solid black; width:100%; height:100%;" id="data">
-<tr style="border: 2px solid black; text-align:center">
-	<th style="border: 2px solid black;">Name</th>
-    <th style="border: 2px solid black;">Email</th>
-    <th style="border: 2px solid black;">Gender</th>
-    <th style="border: 2px solid black;">Country</th>
-	<th style="border: 2px solid black;">State</th>
-	<th style="border: 2px solid black;">Uploadded file</th>
+<table class="shadow table table-success table-striped table-hover " style="width:100%; height:100%;" id="data">
+<tr style="text-align:center">
+	<th >Name</th>
+    <th>Email</th>
+    <th>Gender</th>
+    <th>Country</th>
+	<th>State</th>
+	<th>Uploadded file</th>
   </tr>
-  <tr  style="border: 2px solid black; text-align:center">
+  <tr  style=" text-align:center">
   <td>Employee1</td>
   <td>emp@gmail.com</td>
   <td>Male</td>
   <td>India</td>
   <td>Bihar</td>
-  <td></td>
+  <td><img src="assets/image/logo.png" alt="logo" width=40px height=40px></td>
   </tr>
-  <tr  style="border: 2px solid black; text-align:center">
+  <tr  style="text-align:center">
   <td>Employee1</td>
   <td>emp@gmail.com</td>
   <td>Male</td>
   <td>India</td>
   <td>Bihar</td>
-  <td></td>
+  <td><img src="assets/image/logo.png" alt="logo" width=40px height=40px></td>
   </tr>
-  <tr  style="border: 2px solid black; text-align:center">
+  <tr  style="text-align:center">
   <td>Employee1</td>
   <td>emp@gmail.com</td>
   <td>Male</td>
   <td>India</td>
   <td>Bihar</td>
-  <td></td>
+  <td><img src="assets/image/logo.png" alt="logo" width=40px height=40px></td>
   </tr>
-  <tr  style="border: 2px solid black; text-align:center">
+  <tr  style="text-align:center">
   <td>Employee1</td>
   <td>emp@gmail.com</td>
   <td>Male</td>
   <td>India</td>
   <td>Bihar</td>
-  <td></td>
+  <td><img src="assets/image/logo.png" alt="logo" width=40px height=40px></td>
   </tr>
 </table>
 
