@@ -37,6 +37,8 @@
 
                     <div class="d-flex justify-content-around align-items-center mb-4">
                         <a href="#!">Forgot password?</a>
+                        <a href="register">Create Account</a>
+
                     </div>
 
                     <!-- Submit button -->

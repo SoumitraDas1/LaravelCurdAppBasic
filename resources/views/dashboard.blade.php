@@ -14,21 +14,13 @@
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
       <div class="col-md-3 mb-2 mb-md-0">
-        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+        <a href="/dashboard" class="d-inline-flex link-body-emphasis text-decoration-none">
           <img src="assets/image/logo.png" width=70 height=70 alt="logo">
         </a>
       </div>
-
-      <!-- <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
-        <li><button type="button" class="btn btn-light "  data-bs-toggle="modal" data-bs-target="#addexpense">Add Expense</button></li>
-        <!-- <li><a href="#" class="nav-link px-2">Pricing</a></li> -->
-        <!-- <li><a href="#" class="nav-link px-2">FAQs</a></li> -->
-        <!-- <li><a href="#" class="nav-link px-2">About</a></li>
-      </ul> --> 
-
       <div class="col-md-3 text-end">
         <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#employee">Add Employee</button>
+        <a class="btn btn-block  btn-success" href="#">Logout</a>
       </div>
     </header>
   </div>
@@ -133,7 +125,7 @@
   <!-- modal end employee -->
   <section style="padding:5%">
   <div>
-<table class="shadow table table-success table-striped table-hover " style="width:100%; height:100%;" id="data">
+<table class="shadow table table-primary table-striped table-hover " style="width:100%; height:100%;" id="data">
 <tr style="text-align:center">
 	<th >Name</th>
     <th>Email</th>

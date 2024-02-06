@@ -10,7 +10,7 @@
     <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
 </head>
 <body style="background-color:#2272FF">
-<div style="padding: 30%; padding-top:5%; padding-bottom: 5%">
+<div style="padding: 20%; padding-top:5%; padding-bottom: 5%">
     <div class="card shadow" style="background-color: rgba(255,255,255,0.5)">
         <div class="card-body">
             <section class="vh-100">
@@ -41,9 +41,12 @@
                         <label class="form-label" for="form1Example23">Password</label>
                     </div>
 
+                    <div class="d-flex justify-content-around align-items-center mb-4">
+                    <button type="submit" id="submit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+                    <label for="login"><a class="btn btn-block btn-lg btn-success" href="/">Login</a></label> 
+                    
+                </div>
 
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
 
                     </form>
                 </div>
