@@ -131,8 +131,9 @@
         </div>
       </div>
     </div>
-  <!-- modal end employee -->
-  
+  <!-- modal end employee -->@php
+  $emp = DB::table('employees')->where('userid', Session::get('loginId') )->get();
+  @endphp
   <section style="padding:5%">
   <div>
 <table class="shadow table table-primary table-striped table-hover " style="width:100%; height:100%;" id="data">
@@ -144,38 +145,18 @@
 	<th>State</th>
 	<th>Uploadded file</th>
   </tr>
-  <tr  style=" text-align:center">
-  <td>Employee1</td>
-  <td>emp@gmail.com</td>
-  <td>Male</td>
-  <td>India</td>
-  <td>Bihar</td>
-  <td><img src="assets/image/logo.png" alt="logo" width=40px height=40px></td>
+  @foreach ($emp as $employee)
+<tr style=" text-align:center">
+<td>{{$employee->empname}}</td>
+<td>{{$employee->email}}</td>
+<td>{{$employee->gender}}</td>
+<td>{{$employee->country}}</td>
+<td>{{$employee->state}}</td>
+<td><img src="{{$employee->image}}" alt="logo" width=40px height=40px></td>
   </tr>
-  <tr  style="text-align:center">
-  <td>Employee1</td>
-  <td>emp@gmail.com</td>
-  <td>Male</td>
-  <td>India</td>
-  <td>Bihar</td>
-  <td><img src="assets/image/logo.png" alt="logo" width=40px height=40px></td>
-  </tr>
-  <tr  style="text-align:center">
-  <td>Employee1</td>
-  <td>emp@gmail.com</td>
-  <td>Male</td>
-  <td>India</td>
-  <td>Bihar</td>
-  <td><img src="assets/image/logo.png" alt="logo" width=40px height=40px></td>
-  </tr>
-  <tr  style="text-align:center">
-  <td>Employee1</td>
-  <td>emp@gmail.com</td>
-  <td>Male</td>
-  <td>India</td>
-  <td>Bihar</td>
-  <td><img src="assets/image/logo.png" alt="logo" width=40px height=40px></td>
-  </tr>
+
+@endforeach
+  
 </table>
 
 </div>

@@ -58,6 +58,10 @@ class forms extends Controller
     }
 
     function employee(Request $request){
+        $image  = $request->file('file');
+        $filename = time().'.'.'png';
+        $image->move('uploads/',$filename);
+        $filename = 'uploads/'.$filename;
         $empname = $request->empname;
         $email = $request->email;
         $userId = Session::get('loginId');
@@ -65,7 +69,7 @@ class forms extends Controller
         $state = $request->state;
         $gender = $request->gender;
         $address = $request->address;
-        $res = DB::insert('insert into employees(empname,userid,email,country,state,gender,address,image) values(?,?,?,?,?,?,?,?)',[$empname,$userId,$email,$country,$state,$gender,$address,'uploads/']);
+        $res = DB::insert('insert into employees(empname,userid,email,country,state,gender,address,image) values(?,?,?,?,?,?,?,?)',[$empname,$userId,$email,$country,$state,$gender,$address,$filename]);
          
         
          if($res){
