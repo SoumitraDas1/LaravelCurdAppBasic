@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\forms;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+})->middleware('alreadyLoggedIn');
+Route::get('/dashboard', [forms::class, 'dashboard'])->middleware('isLoggedIn');
+
 Route::get('/register', function () {
     return view('register');
-});
+})->middleware('alreadyLoggedIn');
+Route::post('/register-user',[forms::class, 'registerUser'])->name('regsiter-user');
+Route::post('/login-user',[forms::class, 'login'])->name('login-user');
+Route::get('logout',[forms::class, 'logout']);
+Route::post('/employee',[forms::class, 'employee'])->name('employee');

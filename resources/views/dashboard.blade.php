@@ -20,11 +20,13 @@
       </div>
       <div class="col-md-3 text-end">
         <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#employee">Add Employee</button>
-        <a class="btn btn-block  btn-success" href="#">Logout</a>
+        <a class="btn btn-block  btn-success" href="logout">Logout</a>
       </div>
     </header>
   </div>
   <!-- header -->
+  @if(Session::has('successmsg')) <span>{{Session::get('successmsg')}}</span>@endif
+
 
   <!-- modal start employee-->
   <div class="modal fade" id="employee" tabindex="-1" aria-labelledby="login" aria-hidden="true">
@@ -36,78 +38,85 @@
           </div>
           <div class="modal-body bg-light">
             <div class="card p-3">
-                <form  action="/login-user" method="post">
+                <form  action="/employee" method="post" enctype="multipart/form-data">
                   {{@csrf_field()}}            
             <div class="row g-3 align-items-center" style="margin-bottom: 5px">
               <div class="col-auto">
                 <label for="name" class="col-form-label">Name</label>
               </div>
               <div class="col-auto">
-                <input type="text" id="name" class="form-control" aria-describedby="basic-addon1">
+                <input type="text" required name="empname" id="name" class="form-control" aria-describedby="basic-addon1">
               </div>
             </div>
+            <span class="text-danger">@error('empname'){{$message}} @enderror</span>
             <div class="row g-3 align-items-center" style="margin-bottom: 5px">
               <div class="col-auto">
                 <label for="email" class="col-form-label">Email </label>
               </div>&nbsp;
               <div class="col-auto">
-                 <input type="email" id="email" class="form-control" aria-describedby="basic-addon1">
+                 <input type="email" required name="email" id="email" class="form-control" aria-describedby="basic-addon1">
               </div>
             </div>
+            <span class="text-danger">@error('email'){{$message}} @enderror</span>
             <div class="row g-3 align-items-center" style="margin-bottom: 5px">
               <div class="col-auto">
-                <label for="email" class="col-form-label">Gender</label>
+                <label for="gender" class="col-form-label">Gender</label>
               </div>&nbsp;
               <div class="col-auto">
                 
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                  <input class="form-check-input" type="radio" name="gender" value="male" id="flexRadioDefault1">
                   <label class="form-check-label" for="flexRadioDefault1">
                     Male
                   </label>  
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                  <input class="form-check-input" type="radio" name="gender" value="female" id="flexRadioDefault2">
                   <label class="form-check-label" for="flexRadioDefault2">
                     Female
                   </label>
               </div>
             </div>
+            <span class="text-danger">@error('gender'){{$message}} @enderror</span>
             <div class="row g-3 align-items-center" style="margin-bottom: 5px">
               <div class="col-auto">
-                <label for="email" class="col-form-label">Address</label>
+                <label for="address" class="col-form-label">Address</label>
               </div>&nbsp;
               <div class="col-auto">
-                  <textarea class="form-control" aria-label="With textarea"></textarea>
+                  <textarea name="address" class="form-control" aria-label="With textarea"></textarea>
               </div>
             </div>
+            <span class="text-danger">@error('gender'){{$address}} @enderror</span>
             <div class="row g-3 align-items-center" style="margin-bottom: 5px">
               <div class="col-auto">
                 <label for="email" class="col-form-label">Country</label>
               </div>&nbsp;
               <div class="col-auto">
-              <select class="form-select" aria-label="Default select example">
+              <select name="country" class="form-select" aria-label="Default select example">
                 <option selected>India</option>
-                <option value="1">USA</option>
-                <option value="2">UK</option>
-                <option value="3">PAK</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="PAK">PAK</option>
               </select>
               </div>
             </div>
+            <span class="text-danger">@error('country'){{$message}} @enderror</span>
             <div class="row g-3 align-items-center" style="margin-bottom: 5px">
               <div class="col-auto">
-                <label for="email" class="col-form-label">State</label>
+                <label for="state" class="col-form-label">State</label>
               </div>&nbsp;
               <div class="col-auto">
-                <input type="text" id="name" class="form-control" aria-describedby="basic-addon1">
+                <input required type="text" name="state" id="state" class="form-control" aria-describedby="basic-addon1">
               </div>
             </div>
+            <span class="text-danger">@error('state'){{$message}} @enderror</span>
             <div class="row g-3 align-items-center" style="margin-bottom: 5px">
               <div class="col-auto">
                 <label for="file" class="col-form-label">UploadFile</label>
               </div>&nbsp;
               
-              <input type="file" id="name" class="form-control" aria-describedby="basic-addon1">
+              <input type="file" accept="image/x-png" required name="file" id="file" class="form-control" aria-describedby="basic-addon1" >
               
             </div>
           </div>
+          <span class="text-danger">@error('gender'){{$file}} @enderror</span>
 		  </div>
             <div class="modal-footer">
               <input type="submit" name="submit" class="btn btn-primary m-2" value="submit" aria-label="Password" aria-describedby="basic-addon1">
@@ -123,6 +132,7 @@
       </div>
     </div>
   <!-- modal end employee -->
+  
   <section style="padding:5%">
   <div>
 <table class="shadow table table-primary table-striped table-hover " style="width:100%; height:100%;" id="data">
