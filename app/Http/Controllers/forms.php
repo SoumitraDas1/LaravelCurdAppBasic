@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Session;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -58,6 +59,9 @@ class forms extends Controller
     }
 
     function employee(Request $request){
+        $request->validate([
+            'gender'=>'required'
+        ]);
         $image  = $request->file('file');
         $filename = time().'.'.'png';
         $image->move('uploads/',$filename);
@@ -92,5 +96,44 @@ class forms extends Controller
             return redirect('/');
         }
         
+    }
+    function delete($id){
+        Employee::where('id', $id)->delete();
+        return redirect()->back();
+    }
+
+    function update(Request $request){
+        $request->validate([
+            'gender'=>'required'
+        ]);
+        $image  = $request->file('file');
+        $filename = time().'.'.'png';
+        $image->move('uploads/',$filename);
+        $filename = 'uploads/'.$filename;
+        $empname = $request->empname;
+        $email = $request->email;
+        $id = $request->id;
+        $country = $request->country;
+        $state = $request->state;
+        $gender = $request->gender;
+        $address = $request->address;
+        $res = Employee::where('id',$id)->update(array(
+            'empname'=>$empname,
+            'email'=>$email,
+            'country'=>$country,
+            'state'=>$state,
+            'gender'=>$gender,
+            'address'=>$address,
+            'image'=>$filename,
+            
+));
+         
+        
+         if($res){
+              return back()->with('successmsg','Update Successfull');
+         }
+         else{
+             return back()->with('successmsg',' Update UnSuccessful');   
+         }
     }
 }

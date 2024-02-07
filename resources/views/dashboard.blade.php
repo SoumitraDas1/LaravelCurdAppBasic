@@ -83,7 +83,7 @@
                   <textarea name="address" class="form-control" aria-label="With textarea"></textarea>
               </div>
             </div>
-            <span class="text-danger">@error('gender'){{$address}} @enderror</span>
+            <span class="text-danger">@error('address'){{$message}} @enderror</span>
             <div class="row g-3 align-items-center" style="margin-bottom: 5px">
               <div class="col-auto">
                 <label for="email" class="col-form-label">Country</label>
@@ -116,7 +116,7 @@
               
             </div>
           </div>
-          <span class="text-danger">@error('gender'){{$file}} @enderror</span>
+          <span class="text-danger">@error('file'){{$message}} @enderror</span>
 		  </div>
             <div class="modal-footer">
               <input type="submit" name="submit" class="btn btn-primary m-2" value="submit" aria-label="Password" aria-describedby="basic-addon1">
@@ -144,6 +144,7 @@
     <th>Country</th>
 	<th>State</th>
 	<th>Uploadded file</th>
+  <th>Action</th>
   </tr>
   @foreach ($emp as $employee)
 <tr style=" text-align:center">
@@ -153,14 +154,120 @@
 <td>{{$employee->country}}</td>
 <td>{{$employee->state}}</td>
 <td><img src="{{$employee->image}}" alt="logo" width=40px height=40px></td>
-  </tr>
+<td ><button type="button" class="btn btn-sm btn-secondary"  data-bs-toggle="modal" data-bs-target="#update">Update</button> <a class="btn btn-sm bg-danger text-white" href="{{route('delete', $employee->id )}}">Delete</a></td>  
+</tr>
 
 @endforeach
   
 </table>
 
 </div>
-
+  <!-- modal start employee-->
+  <div class="modal fade" id="update" tabindex="-1" aria-labelledby="update" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="employee">Employee</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body bg-light">
+            <div class="card p-3">
+                <form  action="/update" method="post" enctype="multipart/form-data">
+                  {{@csrf_field()}}  
+                  <input type="text" name="id" hidden value="{{$employee->id}}">          
+            <div class="row g-3 align-items-center" style="margin-bottom: 5px">
+              <div class="col-auto">
+                <label for="name" class="col-form-label">Name</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" required value="{{$employee->empname}}" name="empname" id="name" class="form-control" aria-describedby="basic-addon1">
+              </div>
+            </div>
+            <span class="text-danger">@error('empname'){{$message}} @enderror</span>
+            <div class="row g-3 align-items-center" style="margin-bottom: 5px">
+              <div class="col-auto">
+                <label for="email" class="col-form-label">Email </label>
+              </div>&nbsp;
+              <div class="col-auto">
+                 <input type="email" required value="{{$employee->email}}" name="email" id="email" class="form-control" aria-describedby="basic-addon1">
+              </div>
+            </div>
+            <span class="text-danger">@error('email'){{$message}} @enderror</span>
+            <div class="row g-3 align-items-center" style="margin-bottom: 5px">
+              <div class="col-auto">
+                <label for="gender" class="col-form-label">Gender</label>
+              </div>&nbsp;
+              <div class="col-auto">
+                
+                  <input class="form-check-input" type="radio" name="gender" value="male" id="flexRadioDefault1">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Male
+                  </label>  
+                  <input class="form-check-input" type="radio" name="gender" value="female" id="flexRadioDefault2">
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Female
+                  </label>
+              </div>
+            </div>
+            <span class="text-danger">@error('gender'){{$message}} @enderror</span>
+            <div class="row g-3 align-items-center" style="margin-bottom: 5px">
+              <div class="col-auto">
+                <label for="address" class="col-form-label">Address</label>
+              </div>&nbsp;
+              <div class="col-auto">
+                  <textarea name="address" class="form-control" aria-label="With textarea">{{$employee->address}}</textarea>
+              </div>
+            </div>
+            <span class="text-danger">@error('address'){{$message}} @enderror</span>
+            <div class="row g-3 align-items-center" style="margin-bottom: 5px">
+              <div class="col-auto">
+                <label for="email" class="col-form-label">Country</label>
+              </div>&nbsp;
+              <div class="col-auto">
+              <select name="country" class="form-select" aria-label="Default select example">
+              <option selected>{{$employee->country}}</option>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="PAK">PAK</option>
+              </select>
+              </div>
+            </div>
+            <span class="text-danger">@error('country'){{$message}} @enderror</span>
+            <div class="row g-3 align-items-center" style="margin-bottom: 5px">
+              <div class="col-auto">
+                <label for="state" class="col-form-label">State</label>
+              </div>&nbsp;
+              <div class="col-auto">
+                <input required type="text" value="{{$employee->state}}" name="state" id="state" class="form-control" aria-describedby="basic-addon1">
+              </div>
+            </div>
+            <span class="text-danger">@error('state'){{$message}} @enderror</span>
+            <div class="row g-3 align-items-center" style="margin-bottom: 5px">
+              <div class="col-auto">
+                <label for="file" class="col-form-label">UploadFile</label>
+              </div>&nbsp;
+              
+              <input type="file" accept="image/x-png" required name="file" id="file" class="form-control" aria-describedby="basic-addon1" >
+              
+            </div>
+          </div>
+          <span class="text-danger">@error('file'){{$message}} @enderror</span>
+		  </div>
+            <div class="modal-footer">
+              <input type="submit" name="update" class="btn btn-primary m-2" value="update" aria-label="Password" aria-describedby="basic-addon1">
+            </div>
+                </form>
+          
+          
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  <!-- modal end update -->
   </section>
 </body>
 </html>

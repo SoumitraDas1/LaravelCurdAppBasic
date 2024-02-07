@@ -25,3 +25,5 @@ Route::post('/register-user',[forms::class, 'registerUser'])->name('regsiter-use
 Route::post('/login-user',[forms::class, 'login'])->name('login-user');
 Route::get('logout',[forms::class, 'logout']);
 Route::post('/employee',[forms::class, 'employee'])->name('employee');
+Route::get('/delete/{id}',[forms::class, 'delete'])->name('delete');
+Route::post('/update',[forms::class, 'update'])->name('update');
