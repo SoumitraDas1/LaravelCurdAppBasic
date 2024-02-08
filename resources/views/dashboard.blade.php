@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="icon" type="image/x-icon" href="assets/image/logo.png">
     <script src="assets/bootstrap/js/bootstrap.bundle.js"></script>
-</head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  </head>
 <body style="background-color:#FDF8F0">
     <!-- header -->
 <div class="container">
@@ -86,26 +87,40 @@
             <span class="text-danger">@error('address'){{$message}} @enderror</span>
             <div class="row g-3 align-items-center" style="margin-bottom: 5px">
               <div class="col-auto">
-                <label for="email" class="col-form-label">Country</label>
+                <label for="country" class="col-form-label">Country</label>
               </div>&nbsp;
               <div class="col-auto">
-              <select name="country" class="form-select" aria-label="Default select example">
-                <option selected>India</option>
-                <option value="USA">USA</option>
-                <option value="UK">UK</option>
-                <option value="PAK">PAK</option>
+              <select name="country" id="country" class="form-select" aria-label="Default select example">
+                <option value="">Select Country</option>
+               @foreach($country as $country)
+  
+                <option value="{{$country->id}}">{{$country->country}}</option>
+                @endforeach
+               
               </select>
+              
               </div>
             </div>
             <span class="text-danger">@error('country'){{$message}} @enderror</span>
             <div class="row g-3 align-items-center" style="margin-bottom: 5px">
+              <div class="col-auto">
+                <label for="state" class="col-form-label">State &nbsp; &nbsp;</label>
+              </div>&nbsp;
+              <div class="col-auto">
+              <select name="state" id="state" class="form-select" aria-label="Default select example">
+                <option selected>Select State</option>
+                
+              </select>
+              </div>
+            </div>
+            <!-- <div class="row g-3 align-items-center" style="margin-bottom: 5px">
               <div class="col-auto">
                 <label for="state" class="col-form-label">State</label>
               </div>&nbsp;
               <div class="col-auto">
                 <input required type="text" name="state" id="state" class="form-control" aria-describedby="basic-addon1">
               </div>
-            </div>
+            </div> -->
             <span class="text-danger">@error('state'){{$message}} @enderror</span>
             <div class="row g-3 align-items-center" style="margin-bottom: 5px">
               <div class="col-auto">
@@ -157,11 +172,6 @@
 <td ><button type="button" class="btn btn-sm btn-secondary"  data-bs-toggle="modal" data-bs-target="#update">Update</button> <a class="btn btn-sm bg-danger text-white" href="{{route('delete', $employee->id )}}">Delete</a></td>  
 </tr>
 
-@endforeach
-  
-</table>
-
-</div>
   <!-- modal start employee-->
   <div class="modal fade" id="update" tabindex="-1" aria-labelledby="update" aria-hidden="true">
       <div class="modal-dialog">
@@ -268,6 +278,27 @@
       </div>
     </div>
   <!-- modal end update -->
+  @endforeach
+  
+</table>
+
+</div>
   </section>
+  
+    <script type="text/javascript">
+    jQuery(document).ready(function(){
+      jQuery('#country').change(function(){
+        let cid = jQuery(this).val();
+        jQuery.ajax({
+          url:'/getState',
+          type:'post',
+          data:'cid='+cid+'&_token={{csrf_token()}}',
+          success:function(result){
+            jQuery('#state').html(result)
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>

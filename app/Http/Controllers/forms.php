@@ -89,8 +89,9 @@ class forms extends Controller
     function dashboard(){
         $data=array();
         if(Session::has('loginId')){
-            $data = User::where('id','=',Session::get('loginId'))->first();
-            return view('dashboard', compact('data'));
+            //$data = User::where('id','=',Session::get('loginId'))->first();
+            $data1['country'] = DB::table('countries')->get();
+            return view('dashboard',$data1);
         }
         else{
             return redirect('/');
@@ -126,14 +127,22 @@ class forms extends Controller
             'address'=>$address,
             'image'=>$filename,
             
-));
-         
-        
+)); 
          if($res){
               return back()->with('successmsg','Update Successfull');
          }
          else{
              return back()->with('successmsg',' Update UnSuccessful');   
          }
+    }
+
+   function getState(Request $request){
+        $cid=$request->post('cid');
+        $state= DB::table('states')->where('countryid',$cid)->get();
+        $html='<option value="">Select State</option>';
+        foreach($state as $list){
+            $html.='<option value="'.$list->state.'">'.$list->state.'</option>';
+        }
+        echo $html;
     }
 }
